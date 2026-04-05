@@ -1,0 +1,21 @@
+{
+  "name": "mvp-contratos-web3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MVP Web3 para contratos digitais com ERC20, ERC721, staking, governanca e oraculo.",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "grant:roles": "hardhat run scripts/grantRoles.js --network sepolia"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.5"
+  }
+}
