@@ -1,6 +1,10 @@
 # MVP Web3 — Contratos e Documentos com Validação On-Chain
 
-Projeto acadêmico estruturado para o estudo de caso **"Contratos"**, atendendo ao enunciado que exige **ERC-20, NFT, staking, governança simplificada, oráculo, integração Web3 e deploy em testnet**. O núcleo funcional do caso de uso foi mantido aderente ao slide de MVP aceitável para contratos: **registrar hash, assinatura e verificação**.
+Esse é um Projeto acadêmico pertinente ao Curso Smart Contracts da Formação Web 3.0.
+O projeto foi estruturado para o estudo de caso **"Contratos"**, atendendo ao enunciado 
+que exige **ERC-20, NFT, staking, governança simplificada, oráculo, integração Web3 e 
+deploy em testnet**. O núcleo funcional do caso de uso foi mantido aderente ao slide 
+de MVP aceitável para contratos: **registrar hash, assinatura e verificação**.
 
 ## 1. Problema resolvido
 
