@@ -1,0 +1,10 @@
+.env
+node_modules/
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain-types/
+dist/
+.DS_Store
+Thumbs.db
