@@ -124,7 +124,13 @@ O arquivo `scripts/demo.js` demonstra:
 ```bash
 npm install 
 ```
+
+```bash
+cp .env.example .env
+```
+
 ```PowerShell
+No PowerShell usar:
 Copy-Item .env.example .env
 ```
 
