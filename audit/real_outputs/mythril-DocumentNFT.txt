@@ -1,0 +1,7 @@
+# Mythril Analysis - DocumentNFT
+Contract: DocumentNFT
+Source: contracts/DocumentNFT.sol
+Command: docker run --rm -v "C:\Users\carlo\Documents\FORMACAO\WEB3\AVALIACOES\SC\SC-Advenced\mvp_contratos_web3_entrega:/tmp" -w /tmp mythril/myth analyze /tmp/contracts/DocumentNFT.sol:DocumentNFT --solc-json /tmp/mythril.remappings.json --execution-timeout 120 -o text
+
+The analysis was completed successfully. No issues were detected.
+

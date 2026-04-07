@@ -8,3 +8,4 @@ typechain-types/
 dist/
 .DS_Store
 Thumbs.db
+.solcx-lock-*

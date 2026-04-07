@@ -84,35 +84,77 @@ Escolhido para representar individualmente cada documento/contrato registrado. C
 - prevenção de duplicidade de hash e de validação;
 - adoção de Solidity `^0.8.24`.
 
+As ferramentas de auditoria executadas no ambiente local confirmaram a presença desses controles e apontaram principalmente melhorias de robustez e governança, sem invalidar o funcionamento do MVP.
+
 ## 9. Integração com oráculo
 Foi adotado o padrão `AggregatorV3Interface` para consumo do feed de preço ETH/USD. O objetivo é demonstrar integração de dados externos e refletir isso no incentivo econômico do staking.
 
 ## 10. Integração com backend Web3
-O arquivo `scripts/demo.js` utiliza `ethers.js` para demonstrar:
-- mint/registro do NFT;
-- stake do token;
-- validação com recompensa;
-- criação de proposta;
-- votação;
-- verificação final do documento.
+O arquivo `scripts/demo.js` demonstra:
+
+1. funding do pool de recompensa;
+2. transferência de tokens ao validador;
+3. registro de documento como NFT;
+4. assinatura on-chain;
+5. stake do validador;
+6. validação do documento com recompensa;
+7. criação de proposta de governança;
+8. votação;
+9. verificação final do documento por hash.
 
 ## 11. Deploy em testnet
-O projeto foi estruturado para deploy em Sepolia via Hardhat. Os campos abaixo devem ser preenchidos após execução real:
-- Rede:
-- Endereço ContractToken:
-- Endereço DocumentNFT:
-- Endereço ContractStaking:
-- Endereço ContractGovernanceDAO:
-- Hash da transação de deploy:
-- Hash de uma execução de exemplo:
-- Link do explorer:
+
+O deploy foi realizado em `Sepolia` via Hardhat.
+
+### 11.1 Endereços dos contratos
+- ContractToken: `0x30DDDDad124B292C513a5F96E907f410541F53B2`
+- DocumentNFT: `0xDec861d2A470eC534F0933d4ddd25e0066e1df4E`
+- ContractStaking: `0x08044379CeFf8Cd3C6b6061c0B7c326dFCDf5164`
+- ContractGovernanceDAO: `0x250023bE3540533c5fab65deE7AfD51d774eAfaA`
+
+### 11.2 Hashes das transações de deploy
+- ContractToken: `0xc9cd94ba0d6f2dfe1f0dc968b072485926d71a9b355c648e6a09afa8743208cb`
+- DocumentNFT: `0x336436833dbd6853d013f8177e736a2daeed6a65809e9bf834b76b2615ddfa9d`
+- ContractStaking: `0xad8a67307735ca1fd008bd0ab0e0ac70e525131bf2a64845570afd4b96ae54d1`
+- ContractGovernanceDAO: `0x03ee07247c8251d47ae83c4f37f291c583f0a8553aeb0ec620b6be5e52228f41`
+
+### 11.3 Hashes de execução de exemplo
+- Registro (`DocumentNFT / registerDocument`): `0x954f0c0d4344056c596d41a33e4d56f0789dbfba67c91039681ab582f9336d77`
+- Validação (`ContractStaking / validateDocument`): `0x330a58db86888bfeef2d6f49daa53672f0f3ed538ce7310bf9b47ff322b5f3fc`
+- Voto (`ContractGovernanceDAO / vote`): `0x5f71536c01b094b029877cde74df99a3b3ddafe923d4192cfc6696a43728ac21`
+- Token (`ContractToken / transfer`): `0x5a1cf9dbf1fc01fe513c445ec8655709da435bfcf06c276be07d4435fe8471b2`
+
+### 11.4 Links do explorer
+- Token: `https://sepolia.etherscan.io/address/0x30DDDDad124B292C513a5F96E907f410541F53B2`
+- DocumentNFT: `https://sepolia.etherscan.io/address/0xDec861d2A470eC534F0933d4ddd25e0066e1df4E`
+- Staking: `https://sepolia.etherscan.io/address/0x08044379CeFf8Cd3C6b6061c0B7c326dFCDf5164`
+- Governance: `https://sepolia.etherscan.io/address/0x250023bE3540533c5fab65deE7AfD51d774eAfaA`
+
+### 11.5 Repositório
+- GitHub: `https://github.com/RochaCAO/mvp-contratos-web3`
 
 ## 12. Auditoria
-Foi preparado um relatório de auditoria simples contendo:
-- escopo;
-- premissas;
-- achados manuais;
-- comandos sugeridos para Slither, Mythril e Hardhat.
+Foi produzido um relatório de auditoria simples com base em revisão manual e em execução real de ferramentas no ambiente local.
+
+Ferramentas efetivamente executadas:
+- `npx hardhat compile`
+- `npx hardhat test`
+- `python -m slither . --filter-paths "node_modules|artifacts|cache|typechain-types"`
+- análises Mythril via Docker para:
+  - `ContractToken`
+  - `DocumentNFT`
+  - `ContractStaking`
+  - `ContractGovernanceDAO`
+
+Principais resultados observados:
+- o Slither reportou 9 achados, concentrados em:
+  - retorno parcialmente ignorado no consumo do oráculo;
+  - emissão de eventos após chamadas externas;
+  - uso de `block.timestamp` em regras temporais;
+  - sugestão de aderência explícita a interface em `ContractStaking`;
+- o Mythril foi executado com sucesso para os quatro contratos principais, sem issues detectadas nas análises realizadas.
+
+Os artefatos de auditoria foram registrados em arquivos próprios dentro do repositório.
 
 ## 13. Conclusão
 O MVP atende ao caso de uso “Contratos” ao preservar os três pilares mínimos do estudo de caso — registro por hash, assinatura e verificação — e expandi-los para um protocolo completo com token, incentivo econômico, governança, oráculo e demonstração Web3.

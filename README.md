@@ -122,8 +122,10 @@ O arquivo `scripts/demo.js` demonstra:
 ### Instalação
 
 ```bash
-npm install
-cp .env.example .env
+npm install 
+```
+```PowerShell
+Copy-Item .env.example .env
 ```
 
 ### Compilar
@@ -145,18 +147,35 @@ npx hardhat run scripts/grantRoles.js --network sepolia
 ```
 
 ## 9. Campos para entrega final
+Preenchidos após o deploy real:
 
-Preencher após o deploy real:
+- Rede usada: `Sepolia`
 
-- Rede usada:
-- Endereço do `ContractToken`:
-- Endereço do `DocumentNFT`:
-- Endereço do `ContractStaking`:
-- Endereço do `ContractGovernanceDAO`:
-- Hash da transação de deploy:
-- Hash de execução de exemplo (registro/validação/voto):
-- Link do explorer:
-- Link do GitHub:
+- Endereço do `ContractToken`: `0x30DDDDad124B292C513a5F96E907f410541F53B2`
+- Endereço do `DocumentNFT`: `0xDec861d2A470eC534F0933d4ddd25e0066e1df4E`
+- Endereço do `ContractStaking`: `0x08044379CeFf8Cd3C6b6061c0B7c326dFCDf5164`
+- Endereço do `ContractGovernanceDAO`: `0x250023bE3540533c5fab65deE7AfD51d774eAfaA`
+
+- Hashes das transações de deploy:
+  - `ContractToken`: `0xc9cd94ba0d6f2dfe1f0dc968b072485926d71a9b355c648e6a09afa8743208cb`
+  - `DocumentNFT`: `0x336436833dbd6853d013f8177e736a2daeed6a65809e9bf834b76b2615ddfa9d`
+  - `ContractStaking`: `0xad8a67307735ca1fd008bd0ab0e0ac70e525131bf2a64845570afd4b96ae54d1`
+  - `ContractGovernanceDAO`: `0x03ee07247c8251d47ae83c4f37f291c583f0a8553aeb0ec620b6be5e52228f41`
+
+- Hashes de execução de exemplo:
+  - Registro (`DocumentNFT / registerDocument`): `0x954f0c0d4344056c596d41a33e4d56f0789dbfba67c91039681ab582f9336d77`
+  - Validação (`ContractStaking / validateDocument`): `0x330a58db86888bfeef2d6f49daa53672f0f3ed538ce7310bf9b47ff322b5f3fc`
+  - Voto (`ContractGovernanceDAO / vote`): `0x5f71536c01b094b029877cde74df99a3b3ddafe923d4192cfc6696a43728ac21`
+  - Token (`ContractToken / transfer`): `0x5a1cf9dbf1fc01fe513c445ec8655709da435bfcf06c276be07d4435fe8471b2`
+
+- Links do explorer:
+  - Token: `https://sepolia.etherscan.io/address/0x30DDDDad124B292C513a5F96E907f410541F53B2`
+  - DocumentNFT: `https://sepolia.etherscan.io/address/0xDec861d2A470eC534F0933d4ddd25e0066e1df4E`
+  - Staking: `https://sepolia.etherscan.io/address/0x08044379CeFf8Cd3C6b6061c0B7c326dFCDf5164`
+  - Governance: `https://sepolia.etherscan.io/address/0x250023bE3540533c5fab65deE7AfD51d774eAfaA`
+
+- Link do GitHub: `https://github.com/RochaCAO/mvp-contratos-web3`
+
 
 ## 10. Limitações conhecidas do MVP
 
@@ -168,6 +187,11 @@ Preencher após o deploy real:
 ## 11. Estrutura do repositório
 
 ```text
+README.md
+hardhat.config.js
+mythril.remappings.json
+package.json
+package-lock.json
 contracts/
   ContractToken.sol
   DocumentNFT.sol
@@ -175,15 +199,27 @@ contracts/
   ContractGovernanceDAO.sol
   MockPriceFeed.sol
   interfaces/
+    AggregatorV3Interface.sol
+    IDocumentNFT.sol
+    IStakingGovernance.sol
 scripts/
+  demo.js
   deploy.js
   grantRoles.js
-  demo.js
 test/
   ProtocolSmoke.test.js
 docs/
+  deployed-addresses.json
+  ENTREGA_STATUS.md
   relatorio_tecnico_base.md
   roteiro_video.md
 audit/
   relatorio_auditoria_base.md
+  real_outputs/
+    slither-output.txt
+    slither-checklist.md
+    mythril-ContractToken.txt
+    mythril-DocumentNFT.txt
+    mythril-ContractStaking.txt
+    mythril-ContractGovernanceDAO.txt
 ```
