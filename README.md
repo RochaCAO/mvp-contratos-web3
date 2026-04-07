@@ -128,9 +128,8 @@ npm install
 ```bash
 cp .env.example .env
 ```
-
-```PowerShell
 No PowerShell usar:
+```PowerShell
 Copy-Item .env.example .env
 ```
 
