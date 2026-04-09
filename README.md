@@ -37,7 +37,7 @@ flowchart LR
     E[Chainlink ETH/USD] -->|latestRoundData| D
     F[Token Holder] -->|createProposal / vote| G[Governance DAO]
     G -->|setBaseReward / setMinStake / pause| D
-    H[Backend ethers.js] --> B
+    H[scripts Web3] --> B
     H --> D
     H --> G
     I[ContractToken ERC-20] -->|fundRewardPool / transfer / voting power| D
